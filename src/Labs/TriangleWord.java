@@ -13,5 +13,17 @@ public class TriangleWord
 		
 	public static void printTriangle(String word)
 	{
+            for(int i=0; i<word.length(); i++)
+            {
+                for(int x=0; x<count; x++)
+                {
+                    for(int j=0; j<=i; j++)
+                    {
+                        System.out.print(word.charAt(j));
+                    }
+                }
+                
+                System.out.println("");
+            }
 	}
 }
