@@ -22,7 +22,7 @@ public class TriangleWordRunner
             input = keyboard.nextLine();
             TriangleWord t = new TriangleWord();
             t.printTriangle(input);
-            System.out.println("Do you want to enter more sample input? ");
+            System.out.print("Do you want to enter more sample input? ");
             decide = keyboard.nextLine();
             }while(decide.equals("y"));
 	}

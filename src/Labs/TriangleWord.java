@@ -13,6 +13,7 @@ public class TriangleWord
 		
 	public static void printTriangle(String word)
 	{
+            int count =1;
             for(int i=0; i<word.length(); i++)
             {
                 for(int x=0; x<count; x++)
@@ -22,7 +23,7 @@ public class TriangleWord
                         System.out.print(word.charAt(j));
                     }
                 }
-                
+                count++;
                 System.out.println("");
             }
 	}
