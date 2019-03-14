@@ -42,21 +42,21 @@ class Rational implements Comparable<Rational>
 		//new numerator = (num1 * den2 + num2 * den1)
 		//new denominator = (den1 * den2)
 
-            int num = (getNum() * other.getDen()) + (getDen() * other.getNum());   // execute cross multiplication of numerators
-            int den = (getDen() * other.getDen());        // execute multiplication of denominators
+            int num = (getNum() * other.getDen()) + (getDen() * other.getNum());
+            int den = (getDen() * other.getDen());
 
-            setNum(num);            // populate the new rational number
+            setNum(num);
             setDen(den);
 
-            reduce();                           // reduce it
+            reduce();
 
 	}
 
 	private void reduce()
 	{
-            int GCD = gcd(num, den);             // calculate the GCD
+            int GCD = gcd(num, den);
 
-            setNum(getNum() / GCD);         // divide both parts by GCD
+            setNum(getNum() / GCD);
             setDen(getDen() / GCD);
 
 	}
