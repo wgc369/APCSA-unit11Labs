@@ -13,7 +13,7 @@ class Rational implements Comparable<Rational>
 	//write two constructors
         public Rational()
         {
-            setRational(0,0);
+            setRational(1,1);
         }
         public Rational(int n, int d)
         {
@@ -23,7 +23,7 @@ class Rational implements Comparable<Rational>
 	public void setRational(int n, int d)
         {
             setNum(n);
-            setDen(n);
+            setDen(d);
         }
 
 	//write  a set method for numerator and denominator
@@ -41,30 +41,41 @@ class Rational implements Comparable<Rational>
 		//num1/den1 + num2/den2 
 		//new numerator = (num1 * den2 + num2 * den1)
 		//new denominator = (den1 * den2)
-		
-		
 
+            int num = (getNum() * other.getDen()) + (getDen() * other.getNum());   // execute cross multiplication of numerators
+            int den = (getDen() * other.getDen());        // execute multiplication of denominators
 
-		reduce();
+            setNum(num);            // populate the new rational number
+            setDen(den);
+
+            reduce();                           // reduce it
+
 	}
 
 	private void reduce()
 	{
+            int GCD = gcd(num, den);             // calculate the GCD
 
-
+            setNum(getNum() / GCD);         // divide both parts by GCD
+            setDen(getDen() / GCD);
 
 	}
 
 	private int gcd(int numOne, int numTwo)
 	{
-
+            int min = Math.min(numOne, numTwo);
+            for(int x=min; x>1; x--)
+            {
+                if(numOne%x==0 && numTwo%x==0)
+                    return x;
+            }
 
 		return 1;
 	}
 
 	public Object clone ()
 	{
-		return "";
+		return new Rational(getNum(), getDen());
 	}
 
 
@@ -73,28 +84,56 @@ class Rational implements Comparable<Rational>
 	//write get methods for numerator and denominator
 	public int getNum()
         {
-            
+            return num;
         }
         public int getDen()
         {
-            
+            return den;
         }
 	
 	public boolean equals( Object obj)
 	{
 
+            int objNum = ((Rational)obj).getNum();
+            int objDen = ((Rational)obj).getDen();
+            int g = gcd(objNum, objDen);
+            objNum = objNum/g;
+            objDen = objDen/g;
+            return ( num == objNum && den == objDen );
 
-		return false;
+		//return false;
 	}
 
 	public int compareTo(Rational other)
 	{
+            reduce();
+            other.reduce();
 
-
+            if ( this.getDen() < other.getDen() ) 
+            {
+                return -1;
+            }
+            else if ( this.getDen() == other.getDen() ) 
+            {
+                if( this.getNum() < other.getNum() ) 
+                {
+                    return -1;
+                }
+                else if( this.getNum() > other.getNum() ) 
+                {
+                    return 1;
+                }
+                else{
+                    return 0;
+                }
+            }
 		return -1;
 	}
 
-
+        public String toString() 
+        {
+            return num + "/" + den + "\n";
+        }
 
 	
 	//write  toString() method
